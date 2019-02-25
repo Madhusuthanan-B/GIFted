@@ -1,4 +1,10 @@
+$gifted-primary: #48AF4A;
+
 h2 {
   margin: 5px;
   padding: 5px;
+
+  .app-name {
+    color: $gifted-primary;
+  }
 }
