@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -6,10 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  searchForm: FormGroup = this.buildForm();
 
-  constructor() { }
+  constructor(public formBuilder: FormBuilder) { }
 
-  ngOnInit() {
+  buildForm() {
+    return this.formBuilder.group({
+      'search': ['']
+    });
   }
 
+  ngOnInit() {
+    this.registerFormControls();
+  }
+
+  registerFormControls() {
+    this.searchForm.get('search').valueChanges.
+      subscribe((searchKey: string) => this.validateAndSearch(searchKey));
+  }
+
+  validateAndSearch(searchKey: string) {
+    console.log('search', searchKey);
+  }
 }
